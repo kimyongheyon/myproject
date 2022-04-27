@@ -1,0 +1,18 @@
+package co.edu.yong.volume;
+
+import co.edu.yong.Exmeple1.InterfaceExam;
+
+public class VoulemList implements InterfaceExam {
+
+	@Override
+	public void turnOn() {
+		System.out.println("오디오를 켭니다.");
+	}
+
+	@Override
+	public void turnOff() {
+		System.out.println("오디오를 끕니다.");
+	}
+
+	
+}
