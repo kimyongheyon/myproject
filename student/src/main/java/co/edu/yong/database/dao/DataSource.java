@@ -12,28 +12,28 @@ import java.util.Properties;
 public class DataSource {
 
 	// 싱글툰 클래스에 대표적인 패턴!!
-    private static DataSource dataSource =new DataSource();
+    private static DataSource dataSource =new DataSource(); // 자기 자신을 인스턴스하고
 
-	private DataSource() {} // 자신을 외부에서 생성하지 못하도록 생성자를 만들고
+	private DataSource() {}; // 자신을 외부에서 생성하지 못하도록 생성자를 만들고
 
 
 	
-	private  Connection conn; // 자신을 객체로 생성
+	private  Connection conn; //db랑 연결하는 거
 	private  String driver;
 	private  String url; 
 	private String user ; 
 	private  String password ;
 	
-	public static DataSource getInstance() {
-		
+	public static DataSource getInstance() { //나에 인스턴스를 던저준다.
+		                                    //static을 쓰면 공유영역 ,  class를 쓰면 참조영역
 		return dataSource;
 	}
 			
 			
 	public  Connection getConnection() {
-		configuration();
+		dbconfiguration();
 		try {
-			Class.forName(driver);
+			Class.forName(driver); //dbms에서 사용할 driver(자바에서 제공함)
 			conn= DriverManager.getConnection(url, user, password);
 			System.out.println("DB연결 성공");
 		} catch (ClassNotFoundException | SQLException e) {
@@ -43,7 +43,7 @@ public class DataSource {
 
 		return conn;
 	}
-	private void configuration() {
+	private void dbconfiguration() {
 		Properties properties = new Properties();
 		String resource = getClass().getResource("/db.properties").getPath();
 		
