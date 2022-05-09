@@ -12,6 +12,11 @@ public class DogSabiltyVO {
 	private int full;
 	private int cleanliness;
 	
+	public DogSabiltyVO(){}
+	
+	public DogSabiltyVO(String dname){
+		this.dname =dname;
+	}
 	
 	public String toString() {
 		System.out.print("이름:"+ dname);

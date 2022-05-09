@@ -11,14 +11,29 @@ public class DogShopVO {
 	private long price;
 	
 	
+	public DogShopVO() {
+		super();
+	}
+	
+	
+	public DogShopVO(String name) {
+		super();
+		this.name = name;
+	}
+	
+	
 	public String toString() {
-		System.out.print(name + ":");
-		System.out.print(ability+":");
-		System.out.print(count +":");
-		System.out.println(price+":");
+		System.out.print("이름: "+name);
+		System.out.print(",능력: "+ability+", ");
+		System.out.print("수량: "+count+", ");
+		System.out.println("가격: "+price);
 		
 		return null;
 	}
+
+
+
+
 	
 	
 	
