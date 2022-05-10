@@ -11,6 +11,9 @@ public interface DogGameService {
 	List<DogShopVO> dShopSelectList();
 	
 	List<User_infoVO> userSelectList();
+	
+	List<InventoryVO> invenSelectList();
+	
 
 	DogKindVO dKindSelect(DogKindVO vo);
 
@@ -20,12 +23,13 @@ public interface DogGameService {
 	
 	User_infoVO userSelect(User_infoVO vo);
 	
-
-	int dogsabiltyInsert(DogSabiltyVO vo);
+	InventoryVO invenSelect(InventoryVO vo);
 	
-	int dogshopInsert(DogShopVO vo);
+
 	
 	int userInsert(User_infoVO vo);
+	
+	int inventoryInsert(InventoryVO vo);
 	
 	
 	int dogsabiltyUpdate(DogSabiltyVO vo);
@@ -34,9 +38,9 @@ public interface DogGameService {
 	
 	int userUpdate(User_infoVO vo);
 	
+	int invenUpdate(InventoryVO vo);
+
 	
-	int dogsabiltyDelete(DogSabiltyVO vo);
 	
-	int dogshopDelete(DogShopVO vo);
 
 }

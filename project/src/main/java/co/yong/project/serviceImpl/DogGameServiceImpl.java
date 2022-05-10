@@ -12,6 +12,7 @@ import co.yong.project.service.DogGameService;
 import co.yong.project.service.DogKindVO;
 import co.yong.project.service.DogSabiltyVO;
 import co.yong.project.service.DogShopVO;
+import co.yong.project.service.InventoryVO;
 import co.yong.project.service.User_infoVO;
 
 public class DogGameServiceImpl implements DogGameService {
@@ -127,6 +128,33 @@ public class DogGameServiceImpl implements DogGameService {
 	}
 
 	
+	@Override
+	public List<InventoryVO> invenSelectList() {
+		List<InventoryVO> list = new ArrayList<InventoryVO>();
+		InventoryVO vo;
+		String sql = "SELECT * FROM INVENTORY";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs= psmt.executeQuery();
+			while(rs.next()) {
+				vo = new InventoryVO();
+				vo.setItem_num(rs.getInt("item_num"));
+				vo.setItem_name(rs.getString("item_name"));
+				vo.setItem_ability(rs.getString("item_ability"));
+				vo.setItem_count(rs.getInt("item_count"));
+				list.add(vo);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			close();
+		}
+		return list;
+	}
+
+	
 	
 	
 //==================================================================================================================부분 검색==========================	
@@ -229,26 +257,42 @@ public class DogGameServiceImpl implements DogGameService {
 		return vo;
 	}
 
+	@Override
+	public InventoryVO invenSelect(InventoryVO vo) {
+		String sql = "select * from inventory where item_num";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, vo.getItem_num());
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo = new InventoryVO();
+				vo.setItem_num(rs.getInt("item_num"));
+				vo.setItem_name(rs.getString("item_name"));
+				vo.setItem_ability(rs.getString("item_ability"));
+				vo.setItem_count(rs.getInt("item_count"));
+				
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			close();
+		}
+		
+		
+		return vo;
+	}
 
 	
 	
 //======================================================================================================================추가============================
-	@Override
-	public int dogsabiltyInsert(DogSabiltyVO vo) {
-		int n = 0;
-		return 0;
-	}
-
-	@Override
-	public int dogshopInsert(DogShopVO vo) {
-		return 0;
-	}
 
 
 	@Override
 	public int userInsert(User_infoVO vo) {
 		int n = 0;
-		String sql = "insert into user_info values(?, ?)";
+		String sql = "INSERT INTO USER_INFO VALUES(?, ?)";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -259,6 +303,25 @@ public class DogGameServiceImpl implements DogGameService {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		return n;
+	}
+	
+	@Override
+	public int inventoryInsert(InventoryVO vo) {
+		int n = 0;
+		String sql = "insert into inventory values(?,?,?)";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getItem_name());
+			psmt.setString(2,vo.getItem_ability());
+			psmt.setInt(3, vo.getItem_count());
+			n = psmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		return n;
 	}
 	
@@ -317,16 +380,29 @@ public class DogGameServiceImpl implements DogGameService {
 		}
 		return n;
 	}
-//============================================================================================================삭제======================================
+	
 	@Override
-	public int dogsabiltyDelete(DogSabiltyVO vo) {
-		return 0;
+	public int invenUpdate(InventoryVO vo) {
+		int n = 0;
+		String sql = "UPDATE INVENTORY SET ITEM_COUNT = ?";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, vo.getItem_count());
+			n= psmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return n;
 	}
 
-	@Override
-	public int dogshopDelete(DogShopVO vo) {
-		return 0;
-	}
+	
+	
+//============================================================================================================삭제======================================
+
 
 	private void close() {
 		try {
@@ -342,7 +418,10 @@ public class DogGameServiceImpl implements DogGameService {
 	}
 
 
-	
+
+
+
+
 	
 
 

@@ -7,6 +7,7 @@ import java.util.Scanner;
 import co.yong.project.service.DogGameService;
 import co.yong.project.service.DogSabiltyVO;
 import co.yong.project.service.DogShopVO;
+import co.yong.project.service.InventoryVO;
 import co.yong.project.service.User_infoVO;
 import co.yong.project.serviceImpl.DogGameServiceImpl;
 
@@ -157,8 +158,12 @@ public class Menu {
 		DogGameService dogGame = new DogGameServiceImpl();
 		User_infoVO userinfo = new User_infoVO("김용현");
 		User_infoVO info2 = dogGame.userSelect(userinfo);
+
 		DogSabiltyVO sabilty = new DogSabiltyVO("셰퍼드");
 		DogSabiltyVO sabilty1 = dogGame.dSabiltySelect(sabilty);
+
+		List<InventoryVO> list = new ArrayList<InventoryVO>();
+		list = dogGame.invenSelectList();
 
 		long money = info2.getUser_money();
 		int randomVal = 0;
@@ -181,23 +186,41 @@ public class Menu {
 
 				if (randomVal == 2) {
 					System.out.println("놀아주다가 강아지가 흥분해서 다쳤습니다...");
-					sabilty1.setHappy(happy -= 3);
-					sabilty1.setHealth(health -= 2);
-					sabilty1.setFull(full -= 1);
-					sabilty1.setCleanliness(cleanliness -= 1);
-					sabilty1.setStress(stress += 5);
+					if (happy > 0 && happy < 100) {
+						sabilty1.setHappy(happy -= 4);
+					}
+					if (health > 0 && health < 100) {
+						sabilty1.setHealth(health);
+					}
+					if (full > 0 && full < 100) {
+						sabilty1.setFull(full -= 3);
+					}
+					if (cleanliness > 0 && cleanliness < 100) {
+						sabilty1.setCleanliness(cleanliness += 5);
+					}
+					if (stress > 0 && stress < 100) {
+						sabilty1.setStress(stress -= 1);
+					}
 					sabilty1.setDname("셰퍼드");
 					dogGame.dogsabiltyUpdate(sabilty1);
 					sabilty1.toString();
-				}
-
-				else {
+				} else {
 					System.out.println("강아지가 기분이 좋아보입니다!!");
-					sabilty1.setHappy(happy += 2);
-					sabilty1.setHealth(health += 1);
-					sabilty1.setFull(full -= 2);
-					sabilty1.setCleanliness(cleanliness -= 2);
-					sabilty1.setStress(stress -= 2);
+					if (happy > 0 && happy < 100) {
+						sabilty1.setHappy(happy += 5);
+					}
+					if (health > 0 && health < 100) {
+						sabilty1.setHealth(health+=3);
+					}
+					if (full > 0 && full < 100) {
+						sabilty1.setFull(full -= 3);
+					}
+					if (cleanliness > 0 && cleanliness < 100) {
+						sabilty1.setCleanliness(cleanliness += 5);
+					}
+					if (stress > 0 && stress < 100) {
+						sabilty1.setStress(stress -= 1);
+					}
 					sabilty1.setDname("셰퍼드");
 					dogGame.dogsabiltyUpdate(sabilty1);
 					sabilty1.toString();
@@ -206,11 +229,21 @@ public class Menu {
 			} else if (chose == 2) { // 산책하기 구현
 				System.out.println("산책을 시작합니다!!");
 
-				sabilty1.setHappy(happy += 2);
-				sabilty1.setHealth(health += 1);
-				sabilty1.setFull(full -= 1);
-				sabilty1.setCleanliness(cleanliness -= 2);
-				sabilty1.setStress(stress -= 1);
+				if (happy > 0 && happy < 100) {
+					sabilty1.setHappy(happy += 2);
+				}
+				if (health > 0 && health < 100) {
+					sabilty1.setHealth(health);
+				}
+				if (full > 0 && full < 100) {
+					sabilty1.setFull(full -= 2);
+				}
+				if (cleanliness > 0 && cleanliness < 100) {
+					sabilty1.setCleanliness(cleanliness += 3);
+				}
+				if (stress > 0 && stress < 100) {
+					sabilty1.setStress(stress -= 1);
+				}
 				sabilty1.setDname("셰퍼드");
 				dogGame.dogsabiltyUpdate(sabilty1);
 
@@ -229,8 +262,10 @@ public class Menu {
 					}
 					info2.setUser_money(money);
 					dogGame.userUpdate(info2);
-					info2.toString();
-
+				}
+				else if(randomVal == 2) {
+					System.out.println("야생에 멧돼지가 출현!!!");
+					
 				}
 
 				else {
@@ -243,30 +278,90 @@ public class Menu {
 				System.out.println("당신은 씻겨주기를 선택했습니다.");
 				if (randomVal == 1) {
 					System.out.println("씻다가 강아지가 도망갔습니다....");
-					sabilty1.setHappy(happy -= 1);
-					sabilty1.setHealth(health);
-					sabilty1.setFull(full);
-					sabilty1.setCleanliness(cleanliness += 1);
-					sabilty1.setStress(stress -= 1);
+					if (happy > 0 && happy < 100) {
+						sabilty1.setHappy(happy -= 5);
+					}
+					if (health > 0 && health < 100) {
+						sabilty1.setHealth(health);
+					}
+					if (full > 0 && full < 100) {
+						sabilty1.setFull(full -= 2);
+					}
+					if (cleanliness > 0 && cleanliness < 100) {
+						sabilty1.setCleanliness(cleanliness -= 4);
+					}
+					if (stress > 0 && stress < 100) {
+						sabilty1.setStress(stress +=3 );
+					}
 					sabilty1.setDname("셰퍼드");
 					dogGame.dogsabiltyUpdate(sabilty1);
 					sabilty1.toString();
 				} else {
 					System.out.println("깨끗히 목욕을 마무리하였습니다.");
-					sabilty1.setHappy(happy += 3);
-					sabilty1.setHealth(health);
-					sabilty1.setFull(full);
-					sabilty1.setCleanliness(cleanliness += 4);
-					sabilty1.setStress(stress -= 2);
+					if (happy > 0 && happy < 100) {
+						sabilty1.setHappy(happy += 1);
+					}
+					if (health > 0 && health < 100) {
+						sabilty1.setHealth(health += 1);
+					}
+					if (full > 0 && full < 99) {
+						sabilty1.setFull(full -= 2);
+					}
+					if (cleanliness > 0 && cleanliness < 100) {
+						sabilty1.setCleanliness(cleanliness -= 2);
+					}
+					if (stress > 0 && stress < 100) {
+						sabilty1.setStress(stress -= 1);
+					}
 					sabilty1.setDname("셰퍼드");
 					dogGame.dogsabiltyUpdate(sabilty1);
 					sabilty1.toString();
 				}
 //===================================================================================================================================================// 
 			} else if (chose == 4) { // 밥 먹이기 구현
-				System.out.println("당신은 밥 먹이기를 선택했습니다.");
-				
 
+				if (randomVal == 1) {
+					System.out.println(sabilty1.getDname() + "입 맛이 없는지 잘 안 먹습니다....");
+					if (happy > 0 && happy < 100) {
+						sabilty1.setHappy(happy -= 3);
+					}
+					if (health > 0 && health < 100) {
+						sabilty1.setHealth(health);
+					}
+					if (full > 0 && full < 100) {
+						sabilty1.setFull(full);
+					}
+					if (cleanliness > 0 && cleanliness < 100) {
+						sabilty1.setCleanliness(cleanliness += 5);
+					}
+					if (stress > 0 && stress < 100) {
+						sabilty1.setStress(stress +=10 );
+					}
+					sabilty1.setDname("셰퍼드");
+					dogGame.dogsabiltyUpdate(sabilty1);
+					sabilty1.toString();
+				} else {
+					System.out.println(sabilty1.getDname() + "이 아주 잘 먹습니다.");
+					if (happy > 0 && happy < 100) {
+						sabilty1.setHappy(happy += 1);
+					}
+					if (health > 0 && health < 100) {
+						sabilty1.setHealth(health);
+					}
+					if (full > 0 && full < 100) {
+						sabilty1.setFull(full -= 5);
+					}
+					if (cleanliness > 0 && cleanliness < 100) {
+						sabilty1.setCleanliness(cleanliness += 4);
+					}
+					if (stress > 0 && stress < 100) {
+						sabilty1.setStress(stress -= 1);
+					}
+					sabilty1.setDname("셰퍼드");
+					dogGame.dogsabiltyUpdate(sabilty1);
+					sabilty1.toString();
+
+				}
 			}
 //===================================================================================================================================================//
 			else if (chose == 5) { // 상점 구현
@@ -277,7 +372,7 @@ public class Menu {
 				DogShopVO shop1 = dogGame.dshopSelect(shop);
 				long price = shop1.getPrice();
 				shop.setName(name);
-				System.out.println(name +":" +price + "₩을/를 구입하시겠습니가? 1.예, 2.아니오");
+				System.out.println(name + ":" + price + "₩을/를 구입하시겠습니가? 1.예, 2.아니오");
 				int menu = Integer.parseInt(scn.nextLine());
 				if (menu == 1) {
 					int count = shop1.getCount();
@@ -291,6 +386,9 @@ public class Menu {
 						info2.setUser_money(money);
 						dogGame.userUpdate(info2);
 						System.out.println("이용해주셔서 감사합니다ㅎㅎ");
+
+						System.out.println("능력치가 올랐습니다.");
+
 					} else {
 						System.out.println("소지금이 부족하여 구매가 불가능합니다.");
 					}
@@ -300,7 +398,7 @@ public class Menu {
 				System.out.println("1. 강아지 상태창 | 2.자신의 상태창");
 				int num = Integer.parseInt(scn.nextLine());
 				if (num == 1) {
-					System.out.println("당신의"+sabilty1.getDname()+"상태창 입니다.");
+					System.out.println("당신의" + sabilty1.getDname() + "상태창 입니다.");
 					sabilty1.toString();
 				} else if (num == 2) {
 					System.out.println("당신의 상태창입니다.");
@@ -399,6 +497,7 @@ public class Menu {
 				dogMenu();
 
 			} else if (menu == 2) {
+				
 
 				shepherddogTitle();
 
@@ -408,6 +507,7 @@ public class Menu {
 		}
 	}
 
+//=======================================================================================================================================================================//
 	private void dogMenu() {
 		DogGameService dogGame = new DogGameServiceImpl();
 		while (true) {
@@ -434,16 +534,20 @@ public class Menu {
 		}
 	}
 
+//=====================================================================================================================================================================//
 	private void shop() {
 		DogGameService dogGame = new DogGameServiceImpl();
 		List<DogShopVO> list = new ArrayList<DogShopVO>();
 		list = dogGame.dShopSelectList();
 		System.out.println("안녕하세요 상점입니다.");
-		DogShopVO shop = new DogShopVO();
 		for (DogShopVO vo : list) {
 			vo.toString();
 		}
 
 	}
+
+//=====================================================================================================================================================================//	
+
+
 
 }
