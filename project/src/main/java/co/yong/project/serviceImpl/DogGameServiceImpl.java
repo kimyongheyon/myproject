@@ -13,6 +13,7 @@ import co.yong.project.service.DogKindVO;
 import co.yong.project.service.DogSabiltyVO;
 import co.yong.project.service.DogShopVO;
 import co.yong.project.service.InventoryVO;
+import co.yong.project.service.MonsterVO;
 import co.yong.project.service.User_infoVO;
 
 public class DogGameServiceImpl implements DogGameService {
@@ -259,7 +260,7 @@ public class DogGameServiceImpl implements DogGameService {
 
 	@Override
 	public InventoryVO invenSelect(InventoryVO vo) {
-		String sql = "select * from inventory where item_num";
+		String sql = "SELECT * FROM INVENTORY WHERE ITEM_NUM";
 		try {
 			conn = dao.getConnection();
 			psmt = conn.prepareStatement(sql);
@@ -285,6 +286,36 @@ public class DogGameServiceImpl implements DogGameService {
 	}
 
 	
+	
+
+	@Override
+	public MonsterVO monsterSelect(MonsterVO vo) {
+		String sql = "SELECT * FROM MONSTER WHERE MONSTER_NUM = ? ";
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, vo.getMonster_num());
+			rs=psmt.executeQuery();
+			if(rs.next()) {
+				vo = new MonsterVO();
+				vo.setMonster_num(rs.getInt("monster_num"));
+				vo.setMonster_name(rs.getString("monster_name"));
+				vo.setMonster_bravery(rs.getInt("monster_bravery"));
+				vo.setMonster_drop_money(rs.getLong("monster_drop_money"));
+				
+				
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			close();
+		}
+		
+		return null;
+	}
+
+
 	
 //======================================================================================================================추가============================
 
@@ -416,7 +447,6 @@ public class DogGameServiceImpl implements DogGameService {
 			e.printStackTrace();
 		}
 	}
-
 
 
 

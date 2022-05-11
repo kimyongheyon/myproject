@@ -19,7 +19,8 @@ public class DogSabiltyVO {
 	}
 	
 	public String toString() {
-		System.out.print("이름:"+ dname);
+		System.out.println();
+		System.out.print("                      이름:"+ dname);
 		System.out.print(","+"행복지수:"+happy);
 		System.out.print(","+"스트레스:"+stress);
 		System.out.print(","+"건강지수:"+health);

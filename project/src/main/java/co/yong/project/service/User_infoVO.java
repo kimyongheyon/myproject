@@ -21,8 +21,8 @@ public class User_infoVO {
 	
 	
 	public String  toString() {
-		
-		System.out.println("돈: "+user_money);
+		System.out.println();
+		System.out.println("                 이름: "+user_name+"돈: "+user_money);
 		
 		return null;
 	}

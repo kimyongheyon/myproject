@@ -25,6 +25,7 @@ public interface DogGameService {
 	
 	InventoryVO invenSelect(InventoryVO vo);
 	
+	MonsterVO monsterSelect(MonsterVO vo);
 
 	
 	int userInsert(User_infoVO vo);
