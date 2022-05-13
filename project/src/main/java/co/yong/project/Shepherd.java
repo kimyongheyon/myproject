@@ -246,6 +246,7 @@ public class Shepherd {
 							sabilty1.setBravery(braverry+=1);
 							disease(sabilty1,info);
 						}
+						
 
 					}
 				}
@@ -256,6 +257,7 @@ public class Shepherd {
 							.println("                                     산책을 끝내고 집으로 돌아갑니다   ｡:˚ ૮ ˶ ˆ ᴥ ˆ ˶ ა ˚ :｡");
 				}
 				sleeptime(500);
+				dogGame.dogsabiltyUpdate(sabilty1);
 				sabilty1.toString();
 			}
 //===================================================================================================================================================//
