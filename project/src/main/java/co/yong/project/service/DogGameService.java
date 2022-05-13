@@ -4,7 +4,6 @@ import java.util.List;
 
 public interface DogGameService {
 
-	List<DogKindVO> dkindSelectList();
 
 	List<DogSabiltyVO> dSabiltySelectList();
 
@@ -12,25 +11,27 @@ public interface DogGameService {
 	
 	List<User_infoVO> userSelectList();
 	
-	List<InventoryVO> invenSelectList();
+	List<MonsterVO> monsterList();
+	
 	
 
-	DogKindVO dKindSelect(DogKindVO vo);
 
-	DogSabiltyVO dSabiltySelect(DogSabiltyVO vo);
+	DogSabiltyVO dSabiltySelect(String name);	
 	
 	DogShopVO dshopSelect(DogShopVO vo);
 	
 	User_infoVO userSelect(User_infoVO vo);
 	
-	InventoryVO invenSelect(InventoryVO vo);
+	DogShopVO shopabilityselect(DogShopVO vo);
 	
-	MonsterVO monsterSelect(MonsterVO vo);
+	MonsterVO monsterselect(MonsterVO vo);
+	
 
 	
-	int userInsert(User_infoVO vo);
+	int  userInsert(User_infoVO vo);
 	
-	int inventoryInsert(InventoryVO vo);
+	int  dogInsert(DogSabiltyVO vo);
+	
 	
 	
 	int dogsabiltyUpdate(DogSabiltyVO vo);
@@ -39,7 +40,6 @@ public interface DogGameService {
 	
 	int userUpdate(User_infoVO vo);
 	
-	int invenUpdate(InventoryVO vo);
 
 	
 	

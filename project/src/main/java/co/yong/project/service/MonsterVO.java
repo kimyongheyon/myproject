@@ -14,11 +14,27 @@ public class MonsterVO {
 	
 	
 	public String toString() {
-		System.out.println(monster_name);
+		System.out.print(monster_name+", ");
+		System.out.print("전투력: "+monster_bravery);
         System.out.println(" ,현상금: "+monster_drop_money);		
 		
 		
 		return null;
+	}
+
+
+
+
+	public MonsterVO(int monster_num) {
+		super();
+		this.monster_num = monster_num;
+	}
+
+
+
+
+	public MonsterVO() {
+		super();
 	}
 	
 	

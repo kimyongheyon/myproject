@@ -9,6 +9,12 @@ public class DogShopVO {
 	private String ability;
 	private int count;
 	private long price;
+	private int happy;
+	private int stress;
+	private int health;
+	private int full;
+	private int cleanliness;
+	private int bravery;
 	
 	
 	public DogShopVO() {

@@ -6,7 +6,7 @@ import lombok.Data;
 public class User_infoVO {
 
 	String user_name;
-	long user_money;
+	long user_money = 5000;
 	
 	public User_infoVO() {}
 	
