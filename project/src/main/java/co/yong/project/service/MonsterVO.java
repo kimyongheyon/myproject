@@ -14,10 +14,11 @@ public class MonsterVO {
 	
 	
 	public String toString() {
-		System.out.print(monster_name+", ");
+		System.out.printf("\n \n ");
+		System.out.print("                                                                     "+monster_name+", ");
 		System.out.print("전투력: "+monster_bravery);
         System.out.println(" ,현상금: "+monster_drop_money);		
-		
+		System.out.println("\n \n  ");
 		
 		return null;
 	}

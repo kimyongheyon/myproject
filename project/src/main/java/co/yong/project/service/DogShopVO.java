@@ -29,8 +29,8 @@ public class DogShopVO {
 	
 	
 	public String toString() {
-		System.out.println();
-		System.out.print("                     이름: "+name);
+		System.out.println("\n");
+		System.out.print("                                              이름: "+name);
 		System.out.print(", 능력: "+ability+", ");
 		System.out.print("수량: "+count+", ");
 		System.out.println("가격: "+price);

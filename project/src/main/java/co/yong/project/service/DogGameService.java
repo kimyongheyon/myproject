@@ -26,6 +26,8 @@ public interface DogGameService {
 	
 	MonsterVO monsterselect(MonsterVO vo);
 	
+	
+	int userdelete(User_infoVO vo);
 
 	
 	int  userInsert(User_infoVO vo);

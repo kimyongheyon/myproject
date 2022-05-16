@@ -313,8 +313,8 @@ public class DogGameServiceImpl implements DogGameService {
 			psmt.setInt(4, vo.getHealth());
 			psmt.setInt(5,vo.getFull());
 			psmt.setInt(6,vo.getCleanliness());
-			psmt.setInt(7, vo.getBravery());
-			psmt.setString(8, vo.getUser_name());
+			psmt.setString(7, vo.getUser_name());
+			psmt.setInt(8, vo.getBravery());
 			
 			n=psmt.executeUpdate();
 		}catch(Exception e) {
@@ -399,6 +399,32 @@ public class DogGameServiceImpl implements DogGameService {
 //============================================================================================================삭제======================================
 
 
+	@Override
+	public int userdelete(User_infoVO vo) {
+		int n = 0;
+		String sql = "DELETE FROM USER_INFO WHERE USER_NAME = ? ";
+		
+		try {
+			conn = dao.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getUser_name());
+			n = psmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return n;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	private void close() {
 		try {
 			if (rs != null)
@@ -412,7 +438,6 @@ public class DogGameServiceImpl implements DogGameService {
 		}
 	}
 
-	
 	
 
 

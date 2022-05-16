@@ -33,13 +33,14 @@ public class DogSabiltyVO {
 	
 	public String toString() {
 		System.out.println();
-		System.out.print("                      이름:"+ dname);
+		System.out.print("                                                   이름:"+ dname);
 		System.out.print(","+" 행복지수:"+happy);
 		System.out.print(","+" 스트레스:"+stress);
 		System.out.print(","+" 건강지수:"+health);
 		System.out.print(","+" 포만감:"+full);
 		System.out.print(","+" 청결지수:"+cleanliness);
 		System.out.println(","+"용감지수:"+bravery);
+		System.out.println("\n \n \n");
 		
 		return null;
 	}
